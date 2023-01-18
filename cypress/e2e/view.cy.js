@@ -26,7 +26,6 @@ describe("layers", () => {
       );
       cy.wait(500).then(() => {
         expect(window.map.getView().getZoom()).to.equal(testZoom);
-        console.log(window.map.getView().getCenter());
         expect(window.map.getView().getCenter()).to.deep.equal(testCenter);
       });
     });

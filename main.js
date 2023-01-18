@@ -1,7 +1,8 @@
 import Map from "ol/Map.js";
-import OSM from "ol/source/OSM.js";
-import TileLayer from "ol/layer/Tile.js";
 import View from "ol/View.js";
+import { Draw } from "ol/interaction.js";
+import { OSM, Vector as VectorSource } from "ol/source.js";
+import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer.js";
 
 const map = new Map({
   layers: [],
@@ -14,6 +15,19 @@ const map = new Map({
 
 window.map = map;
 
+map.on("click", (event) => {
+  window.postMessage(
+    {
+      type: "event",
+      click: {
+        coordinate: event.coordinate,
+        pixel: event.pixel,
+      },
+    },
+    "*"
+  );
+});
+
 window.addEventListener("message", (event) => {
   // add a layer to the map
   if (event.data.type === "layer") {
@@ -25,6 +39,22 @@ window.addEventListener("message", (event) => {
           source: new OSM(),
         })
       );
+    }
+    if (event.data.layer.source === "vector") {
+      const source = new VectorSource();
+      const vector = new VectorLayer({
+        source: source,
+        style: {
+          "circle-radius": 7,
+          "circle-fill-color": "#004170",
+        },
+      });
+      map.addLayer(vector);
+      const draw = new Draw({
+        source: source,
+        type: "Point",
+      });
+      map.addInteraction(draw);
     }
   }
   // change layer visibilty
