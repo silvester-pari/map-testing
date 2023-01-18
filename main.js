@@ -63,8 +63,8 @@ window.addEventListener("message", (event) => {
     const layer = map
       .getLayers()
       .getArray()
-      .find((layer) => layer.id === event.data.layer.source);
-    layer.setVisible(event.data.visible);
+      .find((layer) => layer.get("id") === event.data.layer.source);
+    layer.setVisible(event.data.layer.visible);
   }
   // animate the view
   if (event.data.type === "view") {

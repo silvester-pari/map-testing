@@ -7,6 +7,5 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on("file:preprocessor", vitePreprocessor());
     },
-    supportFile: false,
   },
 });
