@@ -35,7 +35,7 @@ describe("interactions", () => {
         cy.get('[data-cy="map"] canvas').click(300, 200);
         cy.get('[data-cy="map"] canvas').click(500, 100);
         cy.get('[data-cy="map"] canvas').click(700, 300);
-        cy.get('[data-cy="map"] canvas').click(800, 400, { force: true });
+        cy.get('[data-cy="map"] canvas').click(799, 399);
       });
     });
   });

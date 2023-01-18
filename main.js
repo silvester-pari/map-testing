@@ -5,6 +5,7 @@ import { OSM, Vector as VectorSource } from "ol/source.js";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer.js";
 
 const map = new Map({
+  controls: [],
   layers: [],
   target: "map",
   view: new View({
