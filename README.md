@@ -8,6 +8,6 @@ To try it, simply run
 
 ```
 npm install
-npm cypress (interactive mode)
-npm run (cli mode)
+npm run cypress (interactive mode)
+npm run test (cli mode)
 ```
